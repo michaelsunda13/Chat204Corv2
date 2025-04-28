@@ -2,17 +2,16 @@ package ru.smak.chat
 
 import java.io.PrintWriter
 import java.net.Socket
+import java.nio.channels.AsynchronousSocketChannel
 import java.util.*
 import kotlin.concurrent.thread
 
 class Communicator(
-    private val socket: Socket
+    private val socket: AsynchronousSocketChannel
 ) {
     var isRunning = false
         private set
     private var parse: ((String)->Unit)? = null
-    private val reader = Scanner(socket.getInputStream())
-    private val writer = PrintWriter(socket.getOutputStream())
 
     private fun startMessageAccepting(){
         thread {
@@ -28,6 +27,8 @@ class Communicator(
     }
 
     fun sendMessage(message: String){
+
+
         writer.println(message)
         writer.flush()
     }

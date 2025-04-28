@@ -1,8 +1,8 @@
 package ru.smak.chat
 
-import java.net.Socket
+import java.nio.channels.AsynchronousSocketChannel
 
-class ConnectedClient(val socket: Socket) {
+class ConnectedClient(socket: AsynchronousSocketChannel) {
 
     private val communicator = Communicator(socket)
     private var userName: String? = null
