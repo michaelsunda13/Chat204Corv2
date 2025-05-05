@@ -18,7 +18,7 @@ class Server(
     init {
         serverSocket.bind(InetSocketAddress(port))
 
-        serverScope.launch {
+        runBlocking {
             while (true) {
                 val socket = suspendCoroutine{
                     serverSocket.accept(
