@@ -10,7 +10,7 @@ import kotlin.concurrent.thread
 import kotlin.coroutines.suspendCoroutine
 
 class Server(
-    port: Int = 5204
+    port: Int = 5206
 ) {
     private val serverSocket = AsynchronousServerSocketChannel.open()
     private val serverScope = CoroutineScope(Dispatchers.IO)

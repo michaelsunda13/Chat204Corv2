@@ -1,5 +1,5 @@
 package ru.smak.chat
 
 fun main() {
-    Client("localhost", 5204)
+    Client("localhost", 5206)
 }

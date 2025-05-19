@@ -16,6 +16,7 @@ class Communicator(
         private set
     private var parse: ((String)->Unit)? = null
     private val communicatorScope = CoroutineScope(Dispatchers.IO)
+    var onClose: (() -> Unit)? = null
 
     private fun startMessageAccepting(){
         communicatorScope.launch {
@@ -39,6 +40,7 @@ class Communicator(
                     break
                 }
             }
+            onClose?.invoke()
         }
     }
 
