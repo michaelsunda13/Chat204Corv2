@@ -27,9 +27,9 @@ class ConnectedClient(socket: AsynchronousSocketChannel) {
                 sendToAll("$userName: $message", echo = true)
             }
         } ?: run {
-            val usernameAttempt = message.trim() //удаление пробелов вообще.
-            if  (usernameAttempt.isEmpty()) {
-                clientScope.launch { communicator.sendMessage("[!] Ник не может быть пустым. Попробуйте снова:") }
+            val usernameAttempt = message.replace(" ", "") //удаление пробелов вообще.
+            if  (!usernameAttempt[0].isLetter() || usernameAttempt.isEmpty()) {
+                clientScope.launch { communicator.sendMessage("[!] должен начинаться с буквы. Попробуйте снова:") }
                 return@run
             }
 
